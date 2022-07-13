@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bdTarefasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Pessoa">
+    <Key>
+      <PropertyRef Name="PESID" />
+    </Key>
+    <Property Name="PESID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOME" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tarefa">
+    <Key>
+      <PropertyRef Name="TARID" />
+    </Key>
+    <Property Name="TARID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TARDESCRICAO" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="TARDATA" Type="datetime" Nullable="false" />
+    <Property Name="TARFEITO" Type="bit" Nullable="false" />
+    <Property Name="PESID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Tarefa__PESID__2D27B809">
+    <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+    <End Role="Tarefa" Type="Self.Tarefa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="PESID" />
+      </Principal>
+      <Dependent Role="Tarefa">
+        <PropertyRef Name="PESID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bdTarefasModelStoreContainer">
+    <EntitySet Name="Pessoa" EntityType="Self.Pessoa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tarefa" EntityType="Self.Tarefa" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Tarefa__PESID__2D27B809" Association="Self.FK__Tarefa__PESID__2D27B809">
+      <End Role="Pessoa" EntitySet="Pessoa" />
+      <End Role="Tarefa" EntitySet="Tarefa" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

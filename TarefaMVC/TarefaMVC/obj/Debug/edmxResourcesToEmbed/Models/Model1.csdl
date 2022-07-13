@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bdTarefasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Pessoa">
+    <Key>
+      <PropertyRef Name="PESID" />
+    </Key>
+    <Property Name="PESID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tarefa" Relationship="Self.FK__Tarefa__PESID__2D27B809" FromRole="Pessoa" ToRole="Tarefa" />
+  </EntityType>
+  <EntityType Name="Tarefa">
+    <Key>
+      <PropertyRef Name="TARID" />
+    </Key>
+    <Property Name="TARID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TARDESCRICAO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TARDATA" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TARFEITO" Type="Boolean" Nullable="false" />
+    <Property Name="PESID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pessoa" Relationship="Self.FK__Tarefa__PESID__2D27B809" FromRole="Tarefa" ToRole="Pessoa" />
+  </EntityType>
+  <Association Name="FK__Tarefa__PESID__2D27B809">
+    <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+    <End Role="Tarefa" Type="Self.Tarefa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoa">
+        <PropertyRef Name="PESID" />
+      </Principal>
+      <Dependent Role="Tarefa">
+        <PropertyRef Name="PESID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bdTarefasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Pessoa" EntityType="Self.Pessoa" />
+    <EntitySet Name="Tarefa" EntityType="Self.Tarefa" />
+    <AssociationSet Name="FK__Tarefa__PESID__2D27B809" Association="Self.FK__Tarefa__PESID__2D27B809">
+      <End Role="Pessoa" EntitySet="Pessoa" />
+      <End Role="Tarefa" EntitySet="Tarefa" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

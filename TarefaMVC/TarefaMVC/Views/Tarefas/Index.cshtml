@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TarefaMVC.Models.Tarefa>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TARDESCRICAO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TARDATA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TARFEITO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pessoa.NOME)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TARDESCRICAO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TARDATA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TARFEITO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pessoa.NOME)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TARID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TARID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TARID })
+        </td>
+    </tr>
+}
+
+</table>

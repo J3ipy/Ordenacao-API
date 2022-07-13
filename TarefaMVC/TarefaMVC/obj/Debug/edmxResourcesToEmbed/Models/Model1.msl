@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="bdTarefasModelStoreContainer" CdmEntityContainer="bdTarefasEntities">
+    <EntitySetMapping Name="Pessoa">
+      <EntityTypeMapping TypeName="bdTarefasModel.Pessoa">
+        <MappingFragment StoreEntitySet="Pessoa">
+          <ScalarProperty Name="PESID" ColumnName="PESID" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tarefa">
+      <EntityTypeMapping TypeName="bdTarefasModel.Tarefa">
+        <MappingFragment StoreEntitySet="Tarefa">
+          <ScalarProperty Name="TARID" ColumnName="TARID" />
+          <ScalarProperty Name="TARDESCRICAO" ColumnName="TARDESCRICAO" />
+          <ScalarProperty Name="TARDATA" ColumnName="TARDATA" />
+          <ScalarProperty Name="TARFEITO" ColumnName="TARFEITO" />
+          <ScalarProperty Name="PESID" ColumnName="PESID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
